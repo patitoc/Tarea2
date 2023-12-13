@@ -1,7 +1,7 @@
-//aqui va a estar el codigo de usuarios.model.js
+//aqui va a estar el codigo de donante.model.js
 
 function init(){
-    $("#frm_paises").on("submit", function(e){
+    $("#frm_donante").on("submit", function(e){
         guardaryeditar(e);
     });
 }
@@ -13,39 +13,39 @@ $().ready(()=>{
 
 var todos = () =>{
     var html = "";
-    $.get("../../Controllers/paises.controller.php?op=todos", (res) => {
+    $.get("../../Controllers/donante.controller.php?op=todos", (res) => {
       res = JSON.parse(res);
       $.each(res, (index, valor) => {
        
         html += `<tr>
                 <td>${index + 1}</td>
-                <td>${valor.Nombre}</td>
+                <td>${valor.NombreDonante}</td>
             <td>
             <button class='btn btn-success' onclick='editar(${
-              valor.PaisId
+              valor.CodDonante
             })'>Editar</button>
             <button class='btn btn-danger' onclick='eliminar(${
-              valor.PaisId
+              valor.CodDonante
             })'>Eliminar</button>
             <button class='btn btn-info' onclick='ver(${
-              valor.PaisId
+              valor.CodDonante
             })'>Ver</button>
             </td></tr>
                 `;
       });
-      $("#tabla_paises").html(html);
+      $("#tabla_donante").html(html);
     });
   };
 
   var guardaryeditar=(e)=>{
     e.preventDefault();
-    var dato = new FormData($("#frm_paises")[0]);
+    var dato = new FormData($("#frm_donante")[0]);
     var ruta = '';
-    var PaisId = document.getElementById("PaisId").value
+    var PaisId = document.getElementById("CodDonante").value
     if(PaisId > 0){
-     ruta = "../../Controllers/paises.controller.php?op=actualizar"
+     ruta = "../../Controllers/donante.controller.php?op=actualizar"
     }else{
-        ruta = "../../Controllers/paises.controller.php?op=insertar"
+        ruta = "../../Controllers/donante.controller.php?op=insertar"
     }
     $.ajax({
         url: ruta,
@@ -56,36 +56,36 @@ var todos = () =>{
         success: function (res) {
           res = JSON.parse(res);
           if (res == "ok") {
-            Swal.fire("Paises", "Registrado con éxito" , "success");
+            Swal.fire("donante", "Registrado con éxito" , "success");
             todos();
             limpia_Cajas();
           } else {
-            Swal.fire("usuarios", "Error al guardo, intente mas rtarde", "error");
+            Swal.fire("donante", "Error al guardo, intente más tarde", "error");
           }
         },
       });
   }
 
-  var editar = (PaisId)=>{
+  var editar = (CodDonante)=>{
   
     $.post(
-      "../../Controllers/paises.controller.php?op=uno",
-      { PaisId: PaisId },
+      "../../Controllers/donante.controller.php?op=uno",
+      { CodDonante: CodDonante },
       (res) => {
         res = JSON.parse(res);
-        $("#PaisId").val(res.PaisId);
-        $("#Nombre").val(res.Nombre);
+        $("#CodDonante").val(res.CodDonante);
+        $("#NombreDonante").val(res.NombreDonante);
     
       }
     );
-    $("#Modal_paises").modal("show");
+    $("#Modal_donante").modal("show");
   }
 
 
-  var eliminar = (PaisId)=>{
+  var eliminar = (CodDonante)=>{
     Swal.fire({
-        title: "Paises",
-        text: "Esta seguro de eliminar el pais",
+        title: "Donantes de Organos y/o Tejidos",
+        text: "Esta seguro de eliminar el donante",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#d33",
@@ -94,12 +94,12 @@ var todos = () =>{
       }).then((result) => {
         if (result.isConfirmed) {
           $.post(
-            "../../Controllers/paises.controller.php?op=eliminar",
+            "../../Controllers/donante.controller.php?op=eliminar",
             { PaisId: PaisId },
             (res) => {
               res = JSON.parse(res);
               if (res === "ok") {
-                Swal.fire("Paises", "Pais Eliminado", "success");
+                Swal.fire("donante", "Donante Eliminado", "success");
                 todos();
               } else {
                 Swal.fire("Error", res, "error");
@@ -113,8 +113,8 @@ var todos = () =>{
 }
   
   var limpia_Cajas = ()=>{
-    document.getElementById("PaisId").value = "";
-    document.getElementById("Nombre").value = "";
+    document.getElementById("CodDonate").value = "";
+    document.getElementById("NombreDonante").value = "";
     $("#Modal_paises").modal("hide");
   
   }
