@@ -35,7 +35,7 @@ class Clase_Donacion
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "INSERT INTO `Donacion`(`TipoDonacion`,`OrganoOTejido`,CodDonacion) VALUES ('$TipoDonacion','$OrganoOTejido', $CodDonacion)";
+            $cadena = "INSERT INTO `donacion`(`TipoDonacion`,`OrganoOTejido`,CodDonacion) VALUES ('$TipoDonacion','$OrganoOTejido', $CodDonacion)";
             $result = mysqli_query($con, $cadena);
             return 'ok';
         } catch (Throwable $th) {

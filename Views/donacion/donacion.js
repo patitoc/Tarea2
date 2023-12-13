@@ -83,7 +83,7 @@ var cargaDonante = () => {
 };
 
 var editar = async (CodDonacion) => {
-  await cargaPaises();
+  await cargaDonacion();
   $.post(
     "../../Controllers/donacion.controller.php?op=uno",
     { CodDonacion: CodDonacion },

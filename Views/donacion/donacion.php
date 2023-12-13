@@ -11,8 +11,8 @@
                 <h5 class="card-title fw-semibold mb-4">Organos y Tejidos Donados</h5>
 
                 <div class="table-responsive">
-                    <button type="button" onclick="cargaPaises()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal_provincia">
-                        Nueva Provincia
+                    <button type="button" onclick="cargaDonacion()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal_donacion">
+                        Nueva Donacion
                     </button>
                     <table class="table text-nowrap mb-0 align-middle">
                         <thead class="text-dark fs-4">
@@ -21,10 +21,10 @@
                                     <h6 class="fw-semibold mb-0">#</h6>
                                 </th>
                                 <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Nombre</h6>
+                                    <h6 class="fw-semibold mb-0">Nombre Donante</h6>
                                 </th>
                                 <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Pais</h6>
+                                    <h6 class="fw-semibold mb-0">Donacion</h6>
                                 </th>
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Opciones</h6>
@@ -47,25 +47,25 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="Modal_provincia" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="Modal_donacion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form method="post" id="frm_provincias">
+            <form method="post" id="frm_donacion">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Paises</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">donante</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
 
-                    <input type="hidden" name="ProvinciasId" id="ProvinciasId">                  
+                    <input type="hidden" name="CodDonacion" id="CodDonacion">                  
                     <div class="form-group">
-                        <label for="nombre">Nombre de la Provincia</label>
+                        <label for="nombre">Tipo de Donacion</label>
                         <input type="text" required class="form-control" id="Nombre" name="Nombre" placeholder="Ingrese el nombre de la provincia">
                     </div>
                     <div class="form-group">
-                        <label for="PaisId">Pais</label>
-                      <select name="PaisId" id="PaisId" class="form-control">
-                        <option value="0">Seleccione un pais</option>
+                        <label for="CodDonante">Donante</label>
+                      <select name="CodDonante" id="CodDonante" class="form-control">
+                        <option value="0">Seleccione un Donante</option>
                       </select>
                     </div>
 
@@ -81,4 +81,4 @@
 
 <?php require_once('../html/script2.php') ?>
 
-<script src="provincias.js"></script>
+<script src="donacion.js"></script>
