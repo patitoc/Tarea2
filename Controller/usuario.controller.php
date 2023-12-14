@@ -78,7 +78,7 @@ switch ($_GET["op"]) {
                     $_SESSION['Correo']    = $respuesta["Correo"];
                     $_SESSION['Rol']       = $respuesta["Rol"];
                     $_SESSION['UsuarioId'] = $respuesta["UsuarioId"];
-                    header("Location:../views/index.php");
+                    header("Location:../Views/index.php");
                 } else {
                     header("Location:../login.php?op=2"); //el usuario o la contraseña son incorrectos
                     exit();
